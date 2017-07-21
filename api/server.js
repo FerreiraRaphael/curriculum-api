@@ -1,5 +1,6 @@
 // @flow
 /* eslint-disable no-console */
+import "source-map-support/register";
 import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
@@ -10,7 +11,7 @@ import BearerStrategy from "passport-http-bearer";
 import config from "./tools/config";
 import routes from "./routes";
 
-const port = config.PORT;
+const port: string = config.PORT;
 const app = express();
 const strategy = new BearerStrategy((token, done) => {
   jwt.verify(token, config.SECRET, (err, user) => {

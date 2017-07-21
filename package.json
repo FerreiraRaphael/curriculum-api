@@ -17,7 +17,8 @@
     "mongoose": "^4.11.0",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
-    "passport-http-bearer": "^1.0.1"
+    "passport-http-bearer": "^1.0.1",
+    "source-map-support": "^0.4.15"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -51,7 +52,8 @@
   },
   "babel": {
     "presets": [
-      "env", "flow"
+      "env",
+      "flow"
     ],
     "plugins": [
       [
@@ -80,14 +82,19 @@
     ],
     "rules": {
       "prettier/prettier": "error",
-      "no-underscore-dangle": 0
+      "no-underscore-dangle": 0,
+      "linebreak-style": [
+        "error",
+        "unix"
+      ]
     }
   },
   "scripts": {
     "start": "nodemon api/server --exec babel-node --inspect --presets env,flow",
     "start:prod": "node dist/server",
+    "flow": "flow",
     "build": "babel api -d dist --presets env,flow",
-    "lint": "eslint tools api --fix",
+    "lint": "eslint api --fix",
     "clean-dist": "rimraf ./dist && mkdir dist"
   }
 }

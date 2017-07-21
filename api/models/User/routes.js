@@ -1,5 +1,4 @@
 import { Router } from "express";
-// import passport from "passport";
 import controller from "./controller";
 
 /**
@@ -26,8 +25,8 @@ router
   .put((...args) => controller.update(...args))
   .get((...args) => controller.findById(...args))
   .delete((...args) => controller.remove(...args));
-// router
-//   .route("/")
+
+router.route("/auth").post(controller.auth);
 /**
  * @swagger
  * /api/users/:
@@ -43,19 +42,5 @@ router
  *         schema:
  *           $ref: '#/definitions/User'
  */
-// .get([passport.authenticate("bearer", { session: false }), controller.find])
-// .post(controller.create)
-// .put([passport.authenticate("bearer", { session: false }), controller.update])
-// .delete([
-//   passport.authenticate("bearer", { session: false }),
-//   controller.remove
-// ]);
-
-// router
-//   .route("/:id")
-//   .get(controller.findById)
-//   .delete(controller.remove);
-
-router.route("/auth").post(controller.auth);
 
 export default router;

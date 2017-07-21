@@ -1,7 +1,7 @@
 // @flow
 import HttpStatus from "http-status-codes";
 import type Facade from "./facade";
-import Responses, { ErrorResponse } from "./responses";
+import { Responses, ErrorResponse } from "./responses";
 
 export default class Controller {
   facade: Facade;
@@ -12,7 +12,7 @@ export default class Controller {
   // eslint-disable-next-line no-undef
   async find(req: express$Request, res: express$Response) {
     try {
-      const data = this.facade.find(req.query);
+      const data = await this.facade.find(req.query);
       Responses(res, {
         code: HttpStatus.OK,
         success: true,
