@@ -1,17 +1,8 @@
 // @flow
 import HttpStatus from "http-status-codes";
 
-class ApiResponse {
-  /* eslint-disable no-undef*/
-  res: express$Response;
-  constructor(res: express$Response) {
-    /* eslint-enable no-undef */
-    this.res = res;
-  }
-}
-
 export function Responses(
-  res: express$Response, // eslint-disable-line no-undef
+  res: express$Response,
   options: {
     success: boolean,
     code: number,
@@ -23,13 +14,14 @@ export function Responses(
 }
 
 export function ErrorResponse(
-  res: express$Response, // eslint-disable-line no-undef
+  res: express$Response,
   options: {
     message?: string,
-    data?: Object
+    data?: Object,
+    code?: number
   }
 ): void {
-  const code = HttpStatus.EXPECTATION_FAILED;
+  const code = HttpStatus.INTERNAL_SERVER_ERROR;
   const success = false;
 
   res.status(code).json(Object.assign({}, { code, success }, options));

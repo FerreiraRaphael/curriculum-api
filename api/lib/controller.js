@@ -9,7 +9,7 @@ export default class Controller {
   constructor(facade: Facade) {
     this.facade = facade;
   }
-  // eslint-disable-next-line no-undef
+
   async find(req: express$Request, res: express$Response) {
     try {
       const data = await this.facade.find(req.query);
@@ -25,7 +25,7 @@ export default class Controller {
       });
     }
   }
-  // eslint-disable-next-line no-undef
+
   async findOne(req: express$Request, res: express$Response) {
     try {
       const data = await this.facade.findOne(req.query);
@@ -41,7 +41,7 @@ export default class Controller {
       });
     }
   }
-  // eslint-disable-next-line no-undef
+
   async findById(req: express$Request, res: express$Response) {
     try {
       const data = await this.facade.findById(req.params.id);
@@ -59,7 +59,7 @@ export default class Controller {
       });
     }
   }
-  // eslint-disable-next-line no-undef
+
   async create(req: express$Request, res: express$Response) {
     try {
       const data = await this.facade.create(req.body);
@@ -68,6 +68,7 @@ export default class Controller {
       Responses(res, {
         code,
         success,
+        message: "Documento criado",
         data
       });
     } catch (data) {
@@ -77,7 +78,7 @@ export default class Controller {
       });
     }
   }
-  // eslint-disable-next-line no-undef
+
   async update(req: express$Request, res: express$Response) {
     try {
       const conditions = { _id: req.params.id };
@@ -97,7 +98,7 @@ export default class Controller {
       });
     }
   }
-  // eslint-disable-next-line no-undef
+
   async remove(req: express$Request, res: express$Response) {
     try {
       const data = await this.facade.remove(req.params.id);

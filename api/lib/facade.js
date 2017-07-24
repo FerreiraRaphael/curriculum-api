@@ -6,7 +6,7 @@ export default class Facade {
     this.Schema = Schema;
   }
 
-  create(input: Object): Promise<any> {
+  create(input: Object) {
     const Schema: any = new this.Schema(input);
     return Schema.save();
   }

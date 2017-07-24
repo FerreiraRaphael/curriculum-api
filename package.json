@@ -87,6 +87,11 @@
         "error",
         "unix"
       ]
+    },
+    "globals": {
+      "express$Response": true,
+      "express$Request": true,
+      "AuthResquest": true
     }
   },
   "scripts": {

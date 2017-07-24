@@ -1,5 +1,6 @@
 import { Router } from "express";
 import controller from "./controller";
+import AuthPolicy from "../../policys/auth";
 
 /**
  * @swagger
@@ -22,11 +23,11 @@ router
 
 router
   .route("/:id")
-  .put((...args) => controller.update(...args))
+  .put([...AuthPolicy.authUser(), (...args) => controller.update(...args)])
   .get((...args) => controller.findById(...args))
   .delete((...args) => controller.remove(...args));
 
-router.route("/auth").post(controller.auth);
+router.route("/auth").post((...args) => controller.auth(...args));
 /**
  * @swagger
  * /api/users/:

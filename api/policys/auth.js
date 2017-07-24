@@ -1,6 +1,7 @@
 // @flow
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import passport from "passport";
 import config from "../tools/config";
 import type Facade from "../lib/facade";
 
@@ -20,7 +21,7 @@ export default class AuthPolicy {
     this.user = req.user;
   }
 
-  async jwtAuth() {
+  async jwtAuth(): Promise<boolean> {
     try {
       const user = await this.facade.findOne({ email: this.email });
 
@@ -41,7 +42,20 @@ export default class AuthPolicy {
     }
   }
 
-  isCurrentUser(id: string): boolean {
-    return this.user._id === id;
+  static authUser(): Array<Function> {
+    return [passport.authenticate("bearer", { session: false })];
+  }
+
+  static isCurrentUser(): Array<Function> {
+    return [
+      ...this.authUser(),
+      (req: AuthResquest, res: express$Response, next: Function): void => {
+        if (req.user._id === req.params.id) {
+          next();
+        } else {
+          next("Não autorizado");
+        }
+      }
+    ];
   }
 }

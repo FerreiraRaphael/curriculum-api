@@ -1,18 +1,11 @@
 // @flow
 import HttpStatus from "http-status-codes";
 import Model from "./facade";
-import type Facade from "../../lib/facade";
 import Controller from "../../lib/controller";
 import { Responses, ErrorResponse } from "../../lib/responses";
 import AuthPolicy from "../../policys/auth";
 
 class UserController extends Controller {
-  auth: Function;
-  constructor(model: Facade) {
-    super(model);
-    this.auth = this.auth.bind(this);
-  }
-  // eslint-disable-next-line no-undef
   async auth(req: AuthResquest, res: express$Response) {
     try {
       const policy = new AuthPolicy(req, this.facade);
