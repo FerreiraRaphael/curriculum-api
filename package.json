@@ -91,7 +91,10 @@
     "globals": {
       "express$Response": true,
       "express$Request": true,
-      "AuthResquest": true
+      "express$Middleware": true,
+      "express$NextFunction": true,
+      "AuthResquest": true,
+      "ResponseObject": true
     }
   },
   "scripts": {
