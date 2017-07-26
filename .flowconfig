@@ -1,9 +1,10 @@
+[ignore]
+.*/static
+.*/dist
+.*/node_modules
+
 [include]
 
-[ignore]
-
-[libs]
-
 [options]
-
-[lints]
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=api

@@ -1,7 +1,6 @@
 /src/api/db.json
 /node_modules/
 /.idea/
-/flow-typed/
 /nbproject/
 /dist/
 npm-debug.log
