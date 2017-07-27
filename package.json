@@ -93,7 +93,7 @@
       "express$Request": true,
       "express$Middleware": true,
       "express$NextFunction": true,
-      "AuthResquest": true,
+      "express$AuthRequest": true,
       "ResponseObject": true
     }
   },

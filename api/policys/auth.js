@@ -31,7 +31,7 @@ const authBearer: Array<express$Middleware> = [
     session: false
   }),
   (
-    req: AuthResquest,
+    req: express$AuthRequest,
     res: express$Response,
     next: express$NextFunction
   ): void => {
@@ -46,7 +46,7 @@ const authBearer: Array<express$Middleware> = [
 ];
 
 const checkIfIsCurrentUser: express$Middleware = (
-  req: AuthResquest,
+  req: express$AuthRequest,
   res: express$Response,
   next: Function
 ): void => {
@@ -67,7 +67,7 @@ export default class AuthPolicy {
   error: Error;
   user: Object;
 
-  constructor(req: AuthResquest, facade: Facade) {
+  constructor(req: express$AuthRequest, facade: Facade) {
     this.email = req.body.email;
     this.password = req.body.password;
     this.facade = facade;
