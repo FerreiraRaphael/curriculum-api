@@ -1,6 +1,7 @@
 import { Router } from "express";
 import controller from "./controller";
 import AuthPolicy from "../../policys/auth";
+
 /**
  * @swagger
  * definition:
@@ -15,10 +16,7 @@ import AuthPolicy from "../../policys/auth";
  */
 
 const router = new Router();
-router
-  .route("/")
-  .get((...args) => controller.find(...args))
-  .post((...args) => controller.create(...args));
+router.route("/").post((...args) => controller.create(...args));
 
 router
   .route("/:id")
@@ -37,9 +35,15 @@ router
    *         schema:
    *           $ref: '#/definitions/User'
    */
-  .get((...args) => controller.findById(...args))
-  .put([...AuthPolicy.authUser(), (...args) => controller.update(...args)])
-  .delete((...args) => controller.remove(...args));
+  .get([
+    ...AuthPolicy.isCurrentUser(),
+    (...args) => controller.findById(...args)
+  ])
+  .put([...AuthPolicy.isCurrentUser(), (...args) => controller.update(...args)])
+  .delete([
+    ...AuthPolicy.isCurrentUser(),
+    (...args) => controller.remove(...args)
+  ]);
 
 router.route("/auth").post((...args) => controller.auth(...args));
 
