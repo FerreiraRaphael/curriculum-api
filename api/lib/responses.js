@@ -3,12 +3,7 @@ import HttpStatus from "http-status-codes";
 
 export function Responses(
   res: express$Response,
-  options: {
-    success: boolean,
-    code: number,
-    message?: string,
-    data?: Object
-  }
+  options: ResponseObject
 ): void {
   res.status(options.code).json(options);
 }
@@ -21,8 +16,13 @@ export function ErrorResponse(
     code?: number
   }
 ): void {
-  const code = HttpStatus.INTERNAL_SERVER_ERROR;
+  const code = options.code || HttpStatus.INTERNAL_SERVER_ERROR;
   const success = false;
+  const resObject: ResponseObject = Object.assign(
+    {},
+    { code, success },
+    options
+  );
 
-  res.status(code).json(Object.assign({}, { code, success }, options));
+  res.status(code).json(resObject);
 }

@@ -2,8 +2,62 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import passport from "passport";
+import httpStatus from "http-status-codes";
 import config from "../tools/config";
 import type Facade from "../lib/facade";
+import { ErrorResponse } from "../lib/responses";
+
+const tokenExists: express$Middleware = (
+  req: express$Request,
+  res: express$Response,
+  next: express$NextFunction
+): void => {
+  if (
+    req.headers &&
+    !req.headers.authorization &&
+    (req.body && !req.body.access_token) &&
+    (req.query && !req.query.access_token)
+  ) {
+    ErrorResponse(res, {
+      message: "Token não informado",
+      code: httpStatus.UNAUTHORIZED
+    });
+  }
+  next();
+};
+
+const authBearer: Array<express$Middleware> = [
+  passport.authenticate("bearer", {
+    session: false
+  }),
+  (
+    req: express$AuthRequest,
+    res: express$Response,
+    next: express$NextFunction
+  ): void => {
+    if (req.user.error) {
+      ErrorResponse(res, {
+        message: req.user.error,
+        code: httpStatus.UNAUTHORIZED
+      });
+    }
+    next();
+  }
+];
+
+const checkIfIsCurrentUser: express$Middleware = (
+  req: express$AuthRequest,
+  res: express$Response,
+  next: Function
+): void => {
+  if (req.user._id !== req.params.id) {
+    ErrorResponse(res, {
+      message: "Não autorizado",
+      code: httpStatus.UNAUTHORIZED
+    });
+  }
+  next();
+};
 
 export default class AuthPolicy {
   email: string;
@@ -13,8 +67,7 @@ export default class AuthPolicy {
   error: Error;
   user: Object;
 
-  // eslint-disable-next-line no-undef
-  constructor(req: AuthResquest, facade: Facade) {
+  constructor(req: express$AuthRequest, facade: Facade) {
     this.email = req.body.email;
     this.password = req.body.password;
     this.facade = facade;
@@ -31,9 +84,7 @@ export default class AuthPolicy {
 
       if (!valid) return false;
 
-      this.token = jwt.sign(user, config.SECRET, {
-        expiresIn: 60 * 60 * 24 // expires in 24 hours
-      });
+      this.token = jwt.sign(user, config.SECRET);
 
       return true;
     } catch (error) {
@@ -43,19 +94,10 @@ export default class AuthPolicy {
   }
 
   static authUser(): Array<Function> {
-    return [passport.authenticate("bearer", { session: false })];
+    return [tokenExists, ...authBearer];
   }
 
   static isCurrentUser(): Array<Function> {
-    return [
-      ...this.authUser(),
-      (req: AuthResquest, res: express$Response, next: Function): void => {
-        if (req.user._id === req.params.id) {
-          next();
-        } else {
-          next("Não autorizado");
-        }
-      }
-    ];
+    return [...this.authUser(), checkIfIsCurrentUser];
   }
 }
