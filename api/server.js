@@ -1,32 +1,21 @@
 // @flow
 /* eslint-disable no-console */
-
-import express from "express";
 import mongoose from "mongoose";
-import morgan from "morgan";
-import bodyParser from "body-parser";
 import passport from "passport";
 import bearer from "./lib/strategys";
 import config from "./tools/config";
-import routes from "./routes";
+import Api from "./api";
 
 const port: string = config.PORT;
-const app = express();
+const app = new Api();
 
 mongoose.connect(config.DB_URL);
 
 passport.use(bearer);
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(morgan("dev"));
-app.use("/static", express.static("static"));
-
 console.log(`Staring web server at PORT: ${port}`);
 
-app.use("/", routes);
-
-app.listen(port, err => {
+app.express.listen(port, err => {
   if (err) {
     console.log(err);
   } else {
