@@ -54,10 +54,7 @@
     "webpack-md5-hash": "^0.0.5"
   },
   "babel": {
-    "presets": [
-      "env",
-      "flow"
-    ],
+    "presets": ["env", "flow"],
     "plugins": [
       [
         "transform-runtime",
@@ -71,25 +68,16 @@
   "eslintConfig": {
     "root": true,
     "parser": "babel-eslint",
-    "extends": [
-      "airbnb-base",
-      "prettier"
-    ],
+    "extends": ["airbnb-base", "prettier"],
     "parserOptions": {
       "ecmaVersion": 7,
       "sourceType": "module"
     },
-    "plugins": [
-      "prettier",
-      "flowtype"
-    ],
+    "plugins": ["prettier", "flowtype"],
     "rules": {
       "prettier/prettier": "error",
       "no-underscore-dangle": 0,
-      "linebreak-style": [
-        "error",
-        "unix"
-      ]
+      "linebreak-style": ["error", "unix"]
     },
     "globals": {
       "express$Application": true,
@@ -99,7 +87,13 @@
       "express$NextFunction": true,
       "express$AuthRequest": true,
       "ResponseObject": true
+    },
+    "env": {
+      "jest": true
     }
+  },
+  "jest": {
+    "transform": { ".*": "<rootDir>/node_modules/babel-jest" }
   },
   "scripts": {
     "start": "nodemon api/server --exec babel-node --inspect --presets env,flow",
@@ -107,6 +101,7 @@
     "flow": "flow",
     "build": "babel api -d dist --presets env,flow",
     "lint": "eslint api --fix",
+    "test": "jest",
     "clean-dist": "rimraf ./dist && mkdir dist"
   }
 }
