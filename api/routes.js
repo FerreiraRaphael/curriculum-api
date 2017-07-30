@@ -1,5 +1,6 @@
 import { Router } from "express";
 import user from "./models/User/routes";
+import skill from "./models/Skill/routes";
 import swaggerSpec from "./tools/swagger";
 
 const router = new Router();
@@ -14,5 +15,6 @@ router.route("/swagger.json").get((req, res) => {
 });
 
 router.use("/api/users", user);
+router.use("/api/skills", skill);
 
 export default router;
