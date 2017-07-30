@@ -1,5 +1,4 @@
 // @flow
-import HttpStatus from "http-status-codes";
 import Model from "./facade";
 import Controller from "../../lib/controller";
 

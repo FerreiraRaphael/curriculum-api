@@ -10,7 +10,12 @@ const schema = Schema({
     lowercase: true,
     trim: true
   },
-  description: { type: String, required: true, lowercase: true, trim: true },
+  description: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true
+  },
   relatedSkills: [{ type: Schema.Types.ObjectId, ref: "Skill" }]
 });
 
