@@ -31,11 +31,11 @@ const authBearer: Array<express$Middleware> = [
     session: false
   }),
   (
-    req: express$AuthRequest,
+    req: express$ApiRequest,
     res: express$Response,
     next: express$NextFunction
   ): void => {
-    if (req.user.error) {
+    if (req.user && req.user.error) {
       ErrorResponse(res, {
         message: req.user.error,
         code: httpStatus.UNAUTHORIZED
@@ -46,11 +46,11 @@ const authBearer: Array<express$Middleware> = [
 ];
 
 const checkIfIsCurrentUser: express$Middleware = (
-  req: express$AuthRequest,
+  req: express$ApiRequest,
   res: express$Response,
   next: Function
 ): void => {
-  if (req.user._id !== req.params.id) {
+  if (req.user && req.user._id !== req.params.id) {
     ErrorResponse(res, {
       message: "Não autorizado",
       code: httpStatus.UNAUTHORIZED
@@ -67,11 +67,11 @@ export default class AuthPolicy {
   error: Error;
   user: Object;
 
-  constructor(req: express$AuthRequest, facade: Facade) {
+  constructor(req: express$ApiRequest, facade: Facade) {
     this.email = req.body.email;
     this.password = req.body.password;
     this.facade = facade;
-    this.user = req.user;
+    this.user = req.user || {};
   }
 
   async jwtAuth(): Promise<boolean> {

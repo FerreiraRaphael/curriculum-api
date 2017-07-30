@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
-declare class express$AuthRequest extends express$Request {
-  user: any
+declare class express$ApiRequest extends express$Request {
+  user?: any
 }
 declare type express$Middleware =
   | ((
@@ -10,7 +10,7 @@ declare type express$Middleware =
       next: express$NextFunction
     ) => mixed)
   | ((
-      req: express$AuthRequest,
+      req: express$ApiRequest,
       res: express$Response,
       next: express$NextFunction
     ) => mixed)

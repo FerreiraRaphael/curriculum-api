@@ -85,7 +85,7 @@
       "express$Request": true,
       "express$Middleware": true,
       "express$NextFunction": true,
-      "express$AuthRequest": true,
+      "express$ApiRequest": true,
       "ResponseObject": true
     },
     "env": {
