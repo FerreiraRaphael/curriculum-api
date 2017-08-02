@@ -12,14 +12,10 @@ const schema = Schema({
   },
   description: {
     type: String,
-    required: true,
-    lowercase: true,
-    trim: true
-  },
-  relatedSkills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],
-  tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }]
+    required: true
+  }
 });
 
-const Skill = mongoose.model("Skill", schema);
+const Tag = mongoose.model("Tag", schema);
 
-export default Skill;
+export default Tag;
