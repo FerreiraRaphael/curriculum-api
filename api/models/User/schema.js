@@ -8,8 +8,7 @@ const schema = Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   description: String,
-  skills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],
-  works: [{ type: Schema.Types.ObjectId, ref: "User" }]
+  skills: [{ type: Schema.Types.ObjectId, ref: "Skill" }]
 });
 
 schema.pre("save", async function hashPassword(next) {
