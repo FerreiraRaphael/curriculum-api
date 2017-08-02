@@ -16,7 +16,8 @@ const schema = Schema({
     lowercase: true,
     trim: true
   },
-  relatedSkills: [{ type: Schema.Types.ObjectId, ref: "Skill" }]
+  relatedSkills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],
+  tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }]
 });
 
 const Skill = mongoose.model("Skill", schema);
