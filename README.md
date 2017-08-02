@@ -1,20 +1,15 @@
-# Deeto 
+# Curriculum Api
 
-Bem vindo a nova rede social Deeto!
+A API to manage my curriculum, works, projects and skills
 
-# Contribuidores 
-
-- [Igor Queiroz Silva](https://github.com/igorqsilva)
-- [Guilherme Alves](https://github.com/guilhermears)
-- [Raphael Ferreira](https://github.com/FerreiraRaphael)
-- [Rony Nogueira](https://github.com/ronynogueiras)
-
-# Dependências 
+# Dependencies 
   
-- NodeJS
-- MongoDB 
-- jQuery 
-- Cloudnary
+- ES6/ES7 (Babel)
+- Flow
+- Express
+- Mongo DB with Mongoose
+- 
+- 
 
 # Como usar 
 
