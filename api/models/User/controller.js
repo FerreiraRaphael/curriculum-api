@@ -6,7 +6,7 @@ import { Responses, ErrorResponse } from "../../lib/responses";
 import AuthPolicy from "../../policys/auth";
 
 class UserController extends Controller {
-  async auth(req: AuthResquest, res: express$Response) {
+  async auth(req: express$ApiRequest, res: express$Response) {
     try {
       const policy = new AuthPolicy(req, this.facade);
       const valid = await policy.jwtAuth();
