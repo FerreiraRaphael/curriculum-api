@@ -1,47 +1,21 @@
 // @flow
 /* eslint-disable no-console */
-import "source-map-support/register";
-import express from "express";
 import mongoose from "mongoose";
-import morgan from "morgan";
-import bodyParser from "body-parser";
-import jwt from "jsonwebtoken";
 import passport from "passport";
-import BearerStrategy from "passport-http-bearer";
+import bearer from "./lib/strategys";
 import config from "./tools/config";
-import routes from "./routes";
+import Api from "./api";
 
 const port: string = config.PORT;
-const app = express();
-const strategy = new BearerStrategy((token, done) => {
-  jwt.verify(token, config.SECRET, (err, user) => {
-    if (err) {
-      return done("err");
-    }
-    if (!user) {
-      return done(null, {
-        success: false,
-        message: "Failed to authenticate token."
-      });
-    }
-    return done(null, user._doc);
-  });
-});
+const app = new Api();
 
 mongoose.connect(config.DB_URL);
 
-passport.use(strategy);
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(morgan("dev"));
-app.use("/static", express.static("static"));
+passport.use(bearer);
 
 console.log(`Staring web server at PORT: ${port}`);
 
-app.use("/", routes);
-
-app.listen(port, err => {
+app.express.listen(port, err => {
   if (err) {
     console.log(err);
   } else {
