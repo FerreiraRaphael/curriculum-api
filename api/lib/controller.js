@@ -60,7 +60,7 @@ export default class Controller {
     }
   }
 
-  async create(req: express$Request, res: express$Response) {
+  async create(req: express$ApiRequest, res: express$Response) {
     try {
       const data = await this.facade.create(req.body);
       const code = data ? HttpStatus.OK : HttpStatus.NOT_FOUND;

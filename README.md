@@ -1,27 +1,32 @@
-# Deeto 
+# Curriculum Api
 
-Bem vindo a nova rede social Deeto!
+A API to manage my curriculum, works, projects and skills
 
-# Contribuidores 
-
-- [Igor Queiroz Silva](https://github.com/igorqsilva)
-- [Guilherme Alves](https://github.com/guilhermears)
-- [Raphael Ferreira](https://github.com/FerreiraRaphael)
-- [Rony Nogueira](https://github.com/ronynogueiras)
-
-# Dependências 
+# Dependencies 
   
-- NodeJS
-- MongoDB 
-- jQuery 
-- Cloudnary
+- ES6/ES7 (Babel)
+- Flow
+- Express
+- Mongo DB with Mongoose
+- Passport and JsonWebToken for authentication
+- Eslint (airbnb-base extension) and Prettier for linting
+- Jest for testing
 
-# Como usar 
+# How to use
 
-*Baixar NVM Windows*
+**Install NVM**
+
+**Linux and Mac**
+
+`curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+`
+
+**Windows**
+
+*Download nvm for windows*
 [NVM Windows](https://github.com/coreybutler/nvm-windows#installation--upgrades)
 
-**Execute os seguintes comando no terminal.**
+**Install node 8.0.0, yarn and flow-bin**
 
 ```nvm install 7.10.0```
 
@@ -29,16 +34,18 @@ Bem vindo a nova rede social Deeto!
 
 ```npm install -g yarn``` 
 
-**Baixe o projeto para a sua máquina local.**
+```npm install -g flow-bin``` 
 
-``` git clone https://github.com/FerreiraRaphael/deeto.git ``` 
+**Clone the repo, install the dependencies and start**
 
-`` cd deeto ``
+``` git clone https://github.com/FerreiraRaphael/curriculum-api.git ``` 
+
+`` cd curriculum-api ``
 
 `` yarn install ``
 
 `` yearn start `` 
 
-**Acesse**
+**Acess**
 
 ``` http://localhost:8080 ```

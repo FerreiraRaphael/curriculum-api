@@ -4,4 +4,5 @@
 /nbproject/
 /dist/
 npm-debug.log
-/nbproject/private/
+/nbproject/
+/.vscode/
