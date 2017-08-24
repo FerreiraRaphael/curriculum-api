@@ -15,7 +15,7 @@ test:
 
 deployment:
   homo:
-    branch: /^(?!(master|homolog|develop|qa)).*/
+    branch: /develop/
     commands:
       - heroku maintenance:on --app curriculum-api-dev
       - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
