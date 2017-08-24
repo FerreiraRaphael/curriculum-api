@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.1.0
+      - image: circleci/node:7.10.0
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -35,5 +35,9 @@ jobs:
 
       # run tests!
       - run: yarn test
-
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: curriculum-api
 
