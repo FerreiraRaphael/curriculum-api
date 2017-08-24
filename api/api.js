@@ -18,18 +18,20 @@ export default class Api {
     this.express.use(bodyParser.json());
     this.express.use(morgan("dev"));
     this.express.use("/static", express.static("static"));
-    this.express.use(function(
-      req: express$Request,
-      res: express$Response,
-      next: express$NextFunction
-    ) {
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-      );
-      next();
-    });
+    this.express.use(
+      (
+        req: express$Request,
+        res: express$Response,
+        next: express$NextFunction
+      ) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header(
+          "Access-Control-Allow-Headers",
+          "Origin, X-Requested-With, Content-Type, Accept"
+        );
+        next();
+      }
+    );
   }
 
   routes(): void {
