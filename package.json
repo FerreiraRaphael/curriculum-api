@@ -4,6 +4,9 @@
   "description": "A API to manage my curriculum, works, projects and skills",
   "author": "Raphael Ferreira",
   "license": "MIT",
+  "engines": {
+    "node": "8.2.0"
+  },
   "dependencies": {
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
