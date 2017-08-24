@@ -36,7 +36,7 @@ jobs:
       # run tests!
       - run: yarn test
 deployment:
-  staging:
+  production:
     branch: master
     heroku:
       appname: curriculum-api
