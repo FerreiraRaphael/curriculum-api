@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 0.10.22
+    version: 7.10.0
 
   pre:
     - npm i -g yarn
