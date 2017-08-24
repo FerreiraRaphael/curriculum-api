@@ -26,7 +26,7 @@
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
     "passport-http-bearer": "^1.0.1",
-    "swagger-jsdoc": "^1.9.6"
+    "swagger-jsdoc": "^1.9.7"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
@@ -106,7 +106,8 @@
     "flow": "flow",
     "prebuild": "rimraf ./dist && mkdir dist",
     "build": "babel api -d dist --presets env,flow",
-    "lint": "eslint api --fix",
+    "lint": "eslint api",
+    "lint:fix": "eslint api --fix",
     "test": "jest",
     "serve": "yarn build && yarn start:prod"
   }
