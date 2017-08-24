@@ -26,11 +26,11 @@ A API to manage my curriculum, works, projects and skills
 *Download nvm for windows*
 [NVM Windows](https://github.com/coreybutler/nvm-windows#installation--upgrades)
 
-**Install node 8.0.0, yarn and flow-bin**
+**Install node 8.2.0, yarn and flow-bin**
 
-```nvm install 7.10.0```
+```nvm install 8.2.0```
 
-```nvm use 7.10.0 ```
+```nvm use 8.2.0 ```
 
 ```npm install -g yarn``` 
 

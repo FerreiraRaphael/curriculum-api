@@ -103,9 +103,10 @@
     "start": "nodemon api/server --exec babel-node --inspect --presets env,flow",
     "start:prod": "node dist/server",
     "flow": "flow",
+    "prebuild": "rimraf ./dist && mkdir dist",
     "build": "babel api -d dist --presets env,flow",
     "lint": "eslint api --fix",
     "test": "jest",
-    "clean-dist": "rimraf ./dist && mkdir dist"
+    "serve": "yarn build && yarn start:prod"
   }
 }
