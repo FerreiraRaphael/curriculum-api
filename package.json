@@ -25,7 +25,8 @@
     "mongoose": "^4.11.0",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
-    "passport-http-bearer": "^1.0.1"
+    "passport-http-bearer": "^1.0.1",
+    "swagger-jsdoc": "^1.9.6"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
@@ -41,8 +42,7 @@
     "prettier-eslint": "^6.4.2",
     "rimraf": "^2.6.1",
     "supertest": "^3.0.0",
-    "supertest-as-promised": "^4.0.2",
-    "swagger-jsdoc": "^1.9.6"
+    "supertest-as-promised": "^4.0.2"
   },
   "babel": {
     "presets": [
