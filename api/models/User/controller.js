@@ -11,13 +11,13 @@ class UserController extends Controller {
       const policy = new AuthPolicy(req, this.facade);
       const valid = await policy.jwtAuth();
       if (valid) {
-        const token = policy.token;
+        const { token, user } = policy;
 
         Responses(res, {
           success: true,
           message: "Autenticado com sucesso",
           code: HttpStatus.OK,
-          data: { token }
+          data: { token, user }
         });
       } else {
         Responses(res, {
