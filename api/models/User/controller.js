@@ -2,10 +2,16 @@
 import HttpStatus from "http-status-codes";
 import Model from "./facade";
 import Controller from "../../lib/controller";
+import type Facade from "../../lib/facade";
 import { Responses, ErrorResponse } from "../../lib/responses";
 import AuthPolicy from "../../policys/auth";
 
 class UserController extends Controller {
+  constructor(facade: Facade) {
+    super(facade);
+    this.fields = ["_id", "name", "email"];
+  }
+
   async auth(req: express$ApiRequest, res: express$Response) {
     try {
       const policy = new AuthPolicy(req, this.facade);
@@ -17,7 +23,7 @@ class UserController extends Controller {
           success: true,
           message: "Autenticado com sucesso",
           code: HttpStatus.OK,
-          data: { token, user }
+          data: { token, user: this.filterFields(user) }
         });
       } else {
         Responses(res, {
