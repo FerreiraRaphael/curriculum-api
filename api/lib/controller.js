@@ -5,14 +5,25 @@ import { Responses, ErrorResponse } from "./responses";
 
 export default class Controller {
   facade: Facade;
+  fields: Array<string>;
 
   constructor(facade: Facade) {
     this.facade = facade;
+    this.fields = [];
+  }
+
+  filterFields(data: Object): Object {
+    return this.fields.length
+      ? this.fields.reduce(
+          (result, next) => ({ ...result, [next]: data[next] }),
+          {}
+        )
+      : data;
   }
 
   async find(req: express$Request, res: express$Response) {
     try {
-      const data = await this.facade.find(req.query);
+      const data = await this.facade.find(req.query, this.fields.join(" "));
       Responses(res, {
         code: HttpStatus.OK,
         success: true,
@@ -28,7 +39,7 @@ export default class Controller {
 
   async findOne(req: express$Request, res: express$Response) {
     try {
-      const data = await this.facade.findOne(req.query);
+      const data = await this.facade.findOne(req.query, this.fields.join(" "));
       Responses(res, {
         code: HttpStatus.OK,
         success: true,
@@ -50,7 +61,7 @@ export default class Controller {
       Responses(res, {
         code,
         success,
-        data
+        data: this.filterFields(data)
       });
     } catch (data) {
       ErrorResponse(res, {
@@ -69,7 +80,7 @@ export default class Controller {
         code,
         success,
         message: "Documento criado",
-        data
+        data: this.filterFields(data)
       });
     } catch (data) {
       ErrorResponse(res, {
@@ -108,7 +119,7 @@ export default class Controller {
         code,
         success,
         message: "Documento deletado",
-        data
+        data: this.filterFields(data)
       });
     } catch (data) {
       ErrorResponse(res, {
