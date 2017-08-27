@@ -19,6 +19,10 @@ const router = new Router();
 router.route("/").post((...args) => controller.create(...args));
 
 router
+  .route("/me")
+  .get([AuthPolicy.authUser(), (...args) => controller.me(...args)]);
+
+router
   .route("/:id")
   /**
    * @swagger
