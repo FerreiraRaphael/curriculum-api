@@ -36,6 +36,14 @@ class UserController extends Controller {
       ErrorResponse(res, { data: e, message: "Erro ao autenticar usuário" });
     }
   }
+
+  me(req: express$ApiRequest, res: express$Response) {
+    Responses(res, {
+      success: true,
+      code: HttpStatus.OK,
+      data: this.filterFields(req.user)
+    });
+  }
 }
 
 export default new UserController(Model);
