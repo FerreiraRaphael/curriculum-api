@@ -80,6 +80,8 @@ export default class AuthPolicy {
 
       if (!user) return false;
 
+      this.user = user;
+
       const valid = await bcrypt.compare(this.password, user.password);
 
       if (!valid) return false;

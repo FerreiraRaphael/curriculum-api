@@ -11,6 +11,7 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-flow": "^6.23.0",
@@ -45,10 +46,7 @@
     "supertest-as-promised": "^4.0.2"
   },
   "babel": {
-    "presets": [
-      "env",
-      "flow"
-    ],
+    "presets": ["env", "flow"],
     "plugins": [
       [
         "transform-runtime",
@@ -56,31 +54,23 @@
           "polyfill": false,
           "regenerator": true
         }
-      ]
+      ],
+      "transform-object-rest-spread"
     ]
   },
   "eslintConfig": {
     "root": true,
     "parser": "babel-eslint",
-    "extends": [
-      "airbnb-base",
-      "prettier"
-    ],
+    "extends": ["airbnb-base", "prettier"],
     "parserOptions": {
       "ecmaVersion": 7,
       "sourceType": "module"
     },
-    "plugins": [
-      "prettier",
-      "flowtype"
-    ],
+    "plugins": ["prettier", "flowtype"],
     "rules": {
       "prettier/prettier": "error",
       "no-underscore-dangle": 0,
-      "linebreak-style": [
-        "error",
-        "unix"
-      ]
+      "linebreak-style": ["error", "unix"]
     },
     "globals": {
       "express$Application": true,
